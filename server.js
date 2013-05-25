@@ -9,8 +9,10 @@ app.get('/', function (req, res) {
 });
 
 io.sockets.on('connection', function (socket) {
+	//TODO: on new connection populate what is there
 
   socket.on('message:send', function(data){
+  	//TODO: Persist this somewhere...
   	socket.broadcast.emit('message:publish', data);
   })
 });

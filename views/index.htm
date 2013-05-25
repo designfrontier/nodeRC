@@ -54,20 +54,31 @@
 
 			$(function(){
 				var chatBox = $('#main-chat')
-					, chatView = $('#main-chat-list');
+					, chatView = $('#main-chat-list')
+					, sendMsg = function(){
+						var msg = chatBox.val();
 
-				$('#send').click(function(){
-					var msg = chatBox.val();
+						//send the message to the server
+						socket.emit('message:send', {
+							content: msg
+							, msgId: Math.ceil(Math.random() * 1000)
+						});
 
-					socket.emit('message:send', {
-						content: msg
-						, msgId: Math.ceil(Math.random() * 1000)
-					});
+						//write it to this browsers window
+						chatView.append('<li>' + msg + '</li>');
 
-					chatView.append('<li>' + msg + '</li>');
+						//clear the text box
+						chatBox.val('');
+					};
 
-					chatBox.val('');
+				chatBox.on('keyup', function(event){
+					if(event.keyCode === 13){
+						//enter key. Send stuff
+						sendMsg();
+					}
 				});
+
+				$('#send').on('click', sendMsg);
 
 				socket.on('message:publish', function (data) {
 					$('#main-chat-list').append('<li>' + data.content + '</li>');
