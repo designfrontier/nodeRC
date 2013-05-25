@@ -1,16 +1,79 @@
 <!doctype html>
 <html>
-	<head></head>
+	<head>
+		<style>
+			html{
+				height: 100%;
+				padding: 0;
+				margin: 0;
+			}
+
+			body{
+				height: 100%;
+				padding: 0;
+				margin: 0;
+			}
+
+			.main{
+				position: relative;
+			}
+
+			.full-height{
+				height: 100%;
+			}
+
+			.absolute{
+				position: absolute;
+			}
+
+			.right{
+				float: right;
+				right:0;
+			}
+
+			.bottom{
+				bottom: 0;
+			}
+		</style>
+	</head>
 	<body>
-		<section class="main"></section>
+		<section class="main full-height">
+			<ul id="main-chat-list"></ul>
+
+			<div class="right bottom absolute">
+				<textarea id="main-chat"></textarea>
+				<button id="send">Send</button>
+			</div>
+		</section>
 		<section class="weir"></section>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
-		  var socket = io.connect('http://localhost');
-		  socket.on('news', function (data) {
-		    console.log(data);
-		    socket.emit('my other event', { my: 'data' });
-		  });
+			var socket = io.connect('http://localhost');
+
+			$(function(){
+				var chatBox = $('#main-chat')
+					, chatView = $('#main-chat-list');
+
+				$('#send').click(function(){
+					var msg = chatBox.val();
+
+					socket.emit('message:send', {
+						content: msg
+						, msgId: Math.ceil(Math.random() * 1000)
+					});
+
+					chatView.append('<li>' + msg + '</li>');
+
+					chatBox.val('');
+				});
+
+				socket.on('message:publish', function (data) {
+					$('#main-chat-list').append('<li>' + data.content + '</li>');
+				});
+			});
+		  
 		</script>
 	</body>
 </html>
