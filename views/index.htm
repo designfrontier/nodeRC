@@ -1,90 +1,23 @@
 <!doctype html>
 <html>
 	<head>
-		<style>
-			html{
-				height: 100%;
-				padding: 0;
-				margin: 0;
-			}
-
-			body{
-				height: 100%;
-				padding: 0;
-				margin: 0;
-			}
-
-			.main{
-				position: relative;
-			}
-
-			.full-height{
-				height: 100%;
-			}
-
-			.absolute{
-				position: absolute;
-			}
-
-			.right{
-				float: right;
-				right:0;
-			}
-
-			.bottom{
-				bottom: 0;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="/public/css/main.css" />
 	</head>
 	<body>
-		<section class="main full-height">
-			<ul id="main-chat-list"></ul>
+		<section class="right full-height half-width scroll">
+			<ul id="main-chat-list" class="no-bullet"></ul>
 
-			<div class="right bottom absolute">
-				<textarea id="main-chat"></textarea>
-				<button id="send">Send</button>
+			<div class="right bottom absolute full-width">
+				<textarea id="main-chat" class="left"></textarea>
+				<button id="send" class="right blue button bottom-margin-1em">Send</button>
 			</div>
 		</section>
-		<section class="weir"></section>
+		<section id="weir" class="full-height left half-width right-border-grey gradiant-bg right-inset-shadow">
+		</section>
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
-		<script>
-			var socket = io.connect('http://localhost');
-
-			$(function(){
-				var chatBox = $('#main-chat')
-					, chatView = $('#main-chat-list')
-					, sendMsg = function(){
-						var msg = chatBox.val();
-
-						//send the message to the server
-						socket.emit('message:send', {
-							content: msg
-							, msgId: Math.ceil(Math.random() * 1000)
-						});
-
-						//write it to this browsers window
-						chatView.append('<li>' + msg + '</li>');
-
-						//clear the text box
-						chatBox.val('');
-					};
-
-				chatBox.on('keyup', function(event){
-					if(event.keyCode === 13){
-						//enter key. Send stuff
-						sendMsg();
-					}
-				});
-
-				$('#send').on('click', sendMsg);
-
-				socket.on('message:publish', function (data) {
-					$('#main-chat-list').append('<li>' + data.content + '</li>');
-				});
-			});
-		  
-		</script>
+		<script src="/public/js/action.js"></script>
+		<script src="/public/js/chat-engine.js"></script>
 	</body>
 </html>
