@@ -19,7 +19,7 @@ body{
 }
 
 .half-width{
-	width: 50%;
+	width: 49.5%;
 }
 
 .right-border-grey{
@@ -28,6 +28,11 @@ body{
 
 .right-inset-shadow{
 	 box-shadow:inset 0 -5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.chat-box{
+	width:83%;
+	height:4em;
 }
 
 .gradiant-bg{
@@ -52,17 +57,49 @@ body{
 	background: linear-gradient(to bottom, rgba(99,182,219,1) 0%,rgba(48,157,207,1) 100%); /* W3C */
 }
 
+.message{
+	background: rgb(240,239,239); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(240,239,239,1) 0%, rgba(245,245,245,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(240,239,239,1)), color-stop(100%,rgba(245,245,245,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(240,239,239,1) 0%,rgba(245,245,245,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(240,239,239,1) 0%,rgba(245,245,245,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(240,239,239,1) 0%,rgba(245,245,245,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(240,239,239,1) 0%,rgba(245,245,245,1) 100%); /* W3C */
+
+	border-radius: 4px;
+	padding: .5em 1em;
+	margin-bottom: 1em;
+}
+
+.filter{
+	padding: 1em;
+	margin-bottom: 1em;
+}
+
 .bottom-margin-1em{
 	margin-bottom: 1em;
+}
+
+.bottom-border{
+	border-bottom: 1px solid rgba(0,0,0,0.3);
 }
 
 .absolute{
 	position: absolute;
 }
 
+.outdent{
+	margin-left: -3em;
+}
+
 .right{
 	float: right;
 	right:0;
+}
+
+.left{
+	float: left;
+	left:0;
 }
 
 .bottom{
@@ -77,8 +114,31 @@ body{
 	color: red;
 }
 
+.small-heading{
+	padding: 0;
+	margin: .25em 1em;
+	font-size:1.15em;
+}
+
 .no-bullet{
 	list-style: none;
+}
+
+.thin-margin{
+	margin: 1em .5em;
+}
+
+.no-padding{
+	padding: 0;
+}
+
+.small-indent{
+	text-indent: 1em;
+	padding-left: 1em;
+}
+
+.block{
+	display: block;
 }
 
 .scroll{

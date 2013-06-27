@@ -1,4 +1,8 @@
 $(function(){
+	window.noderc = action.eventMe({
+		
+	});
+
 	var chatBox = $('#main-chat')
 		, chatView = $('#main-chat-list')
 		, socket = io.connect(location.hostname)
@@ -55,7 +59,7 @@ $(function(){
 		}
 
 		, addNewFilterDOM = function(filter){
-			var filterDom = $('<div class="filter left" data-attr="' + filter + '">' + filter + '</div>');
+			var filterDom = $('<div class="filter left bottom-border" data-attr="' + filter + '"><h4 class="small-heading">' + filter + '</h4><ul class="small-indent no-bullet"></ul></div>');
 
 			$('#weir').append(filterDom);
 
@@ -73,11 +77,11 @@ $(function(){
 
 			}
 
-			$('#main-chat-list').append('<li><span class="italic">' + data.name + '</span>' + data.content + '</li>');
+			$('#main-chat-list').append('<li class="message"><span class="italic block left">' + data.name + '</span><span class="block">' + data.content + '</span></li>');
 			
 			for(key in filters){
 				if(data.content.match(key)){
-					$(filters[key]).append('<li><span class="italic">' + data.name + '</span>' + data.content + '</li>');
+					$(filters[key]).find('ul').append('<li><span class="italic">' + data.name + '</span>' + data.content + '</li>');
 				}
 			}
 		};
