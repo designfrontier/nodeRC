@@ -5,14 +5,15 @@
   "scripts": {
     "start": "node app",
     "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "prepublish": "npm run snyk-protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
-    "express": "4.0.0",
+    "express": "4.16.0",
     "mongodb": "*",
     "mongoose": "*",
     "socket.io": "1.0.1",
-    "snyk": "^1.30.1"
+    "snyk": "^1.85.0"
   },
   "snyk": true
 }
