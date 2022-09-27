@@ -4,15 +4,15 @@
   "private": true,
   "scripts": {
     "start": "node app",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
-    "express": "4.0.0",
+    "express": "4.16.0",
     "mongodb": "*",
     "mongoose": "*",
-    "socket.io": "1.0.1",
-    "snyk": "^1.30.1"
+    "socket.io": "3.0.0",
+    "@snyk/protect": "latest"
   },
   "snyk": true
 }
